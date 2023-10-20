@@ -1,0 +1,12 @@
+[package]
+name = "gamo"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+readme = "README.md"
+authors = ["杜世橋 Du Shiqiao <lucidfrontier.45@gmail.com>"]
+repository = "https://github.com/lucidfrontier45/gamo"
+documentation = "https://docs.rs/gamo"
+description = "A Range like struct for user defined types"
+keywords = ["range", "iterator"]
+categories = ["rust-patterns"]
