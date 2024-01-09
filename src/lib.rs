@@ -5,6 +5,7 @@ pub trait IntoNext {
 pub struct Gamo<T> {
     current: T,
     end: T,
+    inclusive: bool,
 }
 
 impl<T> Gamo<T> {
@@ -12,6 +13,14 @@ impl<T> Gamo<T> {
         Self {
             current: start,
             end,
+            inclusive: false,
+        }
+    }
+    pub fn new_inclusive(start: T, end: T) -> Self {
+        Self {
+            current: start,
+            end,
+            inclusive: true,
         }
     }
 }
@@ -23,7 +32,7 @@ where
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.current < self.end {
+        if self.current < self.end || (self.inclusive && self.current == self.end) {
             let current = self.current.clone();
             self.current = current.clone().into_next();
             Some(current)
@@ -54,6 +63,18 @@ mod tests {
         assert_eq!(r.next(), Some(TimeSlot(2)));
         assert_eq!(r.next(), Some(TimeSlot(3)));
         assert_eq!(r.next(), Some(TimeSlot(4)));
+        assert_eq!(r.next(), None);
+    }
+
+    #[test]
+    fn test_gamo_inclusive() {
+        let mut r = Gamo::new_inclusive(TimeSlot(0), TimeSlot(5));
+        assert_eq!(r.next(), Some(TimeSlot(0)));
+        assert_eq!(r.next(), Some(TimeSlot(1)));
+        assert_eq!(r.next(), Some(TimeSlot(2)));
+        assert_eq!(r.next(), Some(TimeSlot(3)));
+        assert_eq!(r.next(), Some(TimeSlot(4)));
+        assert_eq!(r.next(), Some(TimeSlot(5)));
         assert_eq!(r.next(), None);
     }
 }
