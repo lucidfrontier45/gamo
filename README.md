@@ -1,19 +1,19 @@
 # Gamo
 
-Create Range like struct of user define types for easy for loop. *Gamo* means range in Esperanto.
+Create a Range like struct of user define types for easy for loop. *Gamo* means range in Esperanto.
 
 # What is it?
 
-Currently in Rust there is not stable API to create `Range<T>` for user defined type `T`. This crates provide a `Range` like struct `Gamo` for easily use with for loops.
+Currently Rust does not have a stable API to create `Range<T>` of user defined type `T`. This crate provides a `Range` like struct `Gamo` that can be easily used with for-loops.
 
 # Usage
 
 ```toml
 [dependencies]
-gamo = "0.1.0"
+gamo = "0.2.0"
 ```
 
-The type `T` used in `Gamo<T>` must implements `IntoNext` trait.
+The type `T` used in `Gamo<T>` must implement `IntoNext` trait.
 
 # Example
 
