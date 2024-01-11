@@ -13,19 +13,19 @@ Currently Rust does not have a stable API to create `Range<T>` of user defined t
 gamo = "0.2.0"
 ```
 
-The type `T` used in `Gamo<T>` must implement `IntoNext` trait.
+The type `T` used in `Gamo<T>` must implement `TryToNext` trait.
 
 # Example
 
 ```rust
-use gamo::{IntoNext, Gamo};
+use gamo::{Gamo, TryToNext};
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 struct TimeSlot(usize);
 
-impl IntoNext for TimeSlot {
-    fn into_next(self) -> Self {
-        Self(self.0 + 1)
+impl TryToNext for TimeSlot {
+    fn try_to_next(&self) -> Option<Self> {
+        Some(Self(self.0 + 1))
     }
 }
 
