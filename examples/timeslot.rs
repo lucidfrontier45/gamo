@@ -1,11 +1,11 @@
-use gamo::{Gamo, IntoNext};
+use gamo::{Gamo, TryToNext};
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 struct TimeSlot(usize);
 
-impl IntoNext for TimeSlot {
-    fn into_next(self) -> Self {
-        Self(self.0 + 1)
+impl TryToNext for TimeSlot {
+    fn try_to_next(&self) -> Option<Self> {
+        Some(Self(self.0 + 1))
     }
 }
 
