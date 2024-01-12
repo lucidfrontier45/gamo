@@ -90,7 +90,7 @@ mod tests {
         assert_eq!(r.next(), Some(TimeSlot(5)));
         assert_eq!(r.next(), None);
 
-        let mut r = Gamo::new(TimeSlot(5), TimeSlot(4));
+        let mut r = Gamo::new_inclusive(TimeSlot(5), TimeSlot(4));
         assert_eq!(r.next(), None);
     }
 }
